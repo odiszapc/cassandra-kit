@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<div class="common container-fluid">
+    <div class="row-fluid">
+        <div class="canvas-area span9">
+            <canvas id="canvas" width="900" height="900"></canvas>
+        </div>
+        <div class="panel span2">
+            <fieldset>
+                <legend>Cluster planning</legend>
+                <label for="nodes-input">Number of nodes</label>
+                <input id="nodes-input" type="text" class="input-block-level" placeholder="Nodes count" value="37">
+                <label for="weight-input">Capacity (GB)</label>
+                <input id="weight-input" type="text" class="input-block-level" placeholder="Weight" value="2000">
+                <button id="build-btn" type="button" class="btn" data-loading-text="Loading...">Add</button>
+                <button id="clear-btn" type="button" class="btn" data-loading-text="Loading...">Clear</button>
+
+                <br><br>
+                <label for="tokens">Tokens:</label>
+                <textarea id="tokens" rows="30"></textarea>
+            </fieldset>
+            <div class="capacity"></div>
+            <div class="plan"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ocanvas-2.4.0.min.js"></script>
+<script type="text/javascript" src="js/biginteger.js"></script>
+<script type="text/javascript" src="js/schemeNumber.js"></script>
+<script type="text/javascript" src="js/numeral/numeral.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/plan.js"></script>
+<script type="text/javascript" src="js/ring.js"></script>
+
+<script type="text/javascript">
+    var ring = new Ring();
+    var plan = new Plan();
+
+    $('#build-btn').on('click', function () {
+        var nodes_count = parseInt($('#nodes-input').val());
+        var weight = parseFloat($('#weight-input').val());
+
+        plan.addRange({
+            nodes_count: nodes_count,
+            weight: weight
+        });
+
+        var positions = plan.calculate_positions();
+        ring.clear();
+
+        var node_scale = 1;
+        if (plan.nodes_count > 150) {
+            node_scale = 0.3;
+        } else if (plan.nodes_count > 120) {
+            node_scale = 0.5;
+        } else if (plan.nodes_count > 80) {
+            node_scale = 0.7;
+        } else {
+            node_scale = 1;
+        }
+
+
+        ring.node_scale = node_scale;
+        for (var i = 0; i < positions.length; i++) {
+            var node = new Node({
+                position: positions[i],
+                view: {
+                    background: plan.backgrounds[i]
+                }
+            });
+            ring.addNode(node);
+        }
+        //$('.progress').hide();
+
+        var tokens = plan.calculate_tokens();
+        $('#tokens').val("");
+        $.each(tokens, function (i, t) {
+            var line = "node " + i + ": " + t.toString();
+            $('#tokens').val($('#tokens').val() + line + "\n");
+        });
+    });
+
+
+    $('#clear-btn').on('click', function () {
+        ring.clear();
+        plan.clear();
+    });
+
+    $('#tokens').on('focus click', function (e) {
+        e.target.select();
+        jQuery(e.target).one('mouseup', function (e) {
+            e.preventDefault();
+        });
+    });
+
+</script>
+</body>
+</html>
