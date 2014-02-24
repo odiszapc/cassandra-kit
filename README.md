@@ -10,6 +10,8 @@ Features:
 * Built on Twitter Bootstrap
 * Unbalanced rings support
 
+![](https://pbs.twimg.com/media/BhNd2IKCcAA4yyx.png:large)
+
 ## Useful BASH commands
 ####How many data in bytes are involved in streaming process
 ##### 1. For a specific column family
