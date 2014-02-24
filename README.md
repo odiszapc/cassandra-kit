@@ -1,7 +1,9 @@
 cassandra-kit
 =============
 
-I have been working with Сфыыфтвкф for a long timeю I started this repository to save your time, Cassandra brothers. I do it just because I like it.
+I have been working with Cassandra for a long time. I started this repository to save your time, Cassandra brothers. This project will represent my Cassandra expirience. Snippets ands tools I'll push here helped me many times. All of them are from practice, not theory.
+
+I do it just because I like it.
 
 ## Visual token calculator
 Placed in `./token-calculator-ui/`.
