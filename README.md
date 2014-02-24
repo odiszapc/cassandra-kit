@@ -3,6 +3,14 @@ cassandra-kit
 
 For a long time I worked with Cassandra. I started with this repo to save your time, Cassandra brothers. I do it just because I like it.
 
+## Visual token calculator
+Placed in `./token-calculator-ui/`.
+
+Features:
+* Built on Twitter Bootstrap
+* Unbalanced rings support
+
+## Useful BASH commands
 ####How many data in bytes are involved in streaming process
 ##### 1. For a specific column family
 
