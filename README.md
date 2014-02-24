@@ -6,7 +6,7 @@ I have been working with Cassandra for a long time. I started this repository to
 I do it just because I like it.
 
 ## Visual token calculator
-Placed in `./token-calculator-ui/`.
+Sources are located `./token-calculator-ui/`. Open `index.html` to start token calculation.
 
 Features:
 * Built on Twitter Bootstrap
