@@ -1,4 +1,4 @@
-cassandra-kit
+Cassandra Kit
 =============
 
 I have been working with Cassandra for a long time. I started this repository to save your time, Cassandra brothers. This project will represent my Cassandra expirience. Snippets ands tools I'll push here helped me many times. All of them are from practice, not theory.
