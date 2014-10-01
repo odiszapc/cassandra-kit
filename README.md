@@ -29,3 +29,8 @@ Features:
 
     echo "$(bc -l <<< "scale=2; $(nodetool netstats | grep % | sed --unbuffered -r 's/ - [0-9]+%//g' | sed --unbuffered -r 's/.+?[0-9]+\///g' | awk '{total = total + $1}END{print total}') / 1024 / 1024 / 1024") GB"
     
+#### Authors
+Alexey Plotnik (odiszapc@gmail.com, http://twitter.com/odiszapc) I do it just because I like it.
+
+#### License
+Apache 2.0
